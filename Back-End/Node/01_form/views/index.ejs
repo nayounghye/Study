@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>node form</title>
+  </head>
+  <style>
+    fieldset {
+      display: inline;
+    }
+
+    form {
+      position: relative;
+    }
+
+    input {
+    }
+  </style>
+  <body>
+    <fieldset>
+      <legend><h3>get 요청</h3></legend>
+      <form action="/get" method="get" name="sign-up-get" target="_blank">
+        ID : <input type="text" name="id" placeholder="아이디" value="jordy" />
+        <br />
+        <br />
+        PW :
+        <input type="password" name="pw" placeholder="비밀번호" value="1234" />
+        <br />
+        <br />
+        <!-- <input type="file" name="file" />
+        <br />
+        <br /> -->
+        <button type="submit" name="get-result">회원가입</button>
+      </form>
+    </fieldset>
+    <br />
+    <br />
+    <fieldset>
+      <legend><h3>post 요청</h3></legend>
+      <form action="/post" method="post" name="sign-up-post" target="_blank">
+        ID : <input type="text" name="id" placeholder="아이디" value="jordy" />
+        <br />
+        <br />
+        PW :
+        <input type="password" name="pw" placeholder="비밀번호" value="1234" />
+        <br />
+        <br />
+        <!-- <input type="file" name="file" />
+        <br />
+        <br /> -->
+        <button type="submit" name="post-result">회원가입</button>
+      </form>
+    </fieldset>
+  </body>
+</html>
