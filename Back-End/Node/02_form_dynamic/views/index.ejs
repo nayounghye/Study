@@ -24,9 +24,14 @@
 
     input {
     }
+    body {
+      display: flex;
+      position: relative;
+    }
   </style>
   <body>
-    <form name="sign-up1">
+    <!----------------------------- ajax-get요청  ----------------------------->
+    <!-- <form name="sign-up1">
       <fieldset>
         <legend><h3>ajax get 요청</h3></legend>
         <input
@@ -52,8 +57,9 @@
         </div>
         <h3 id="result1"></h3>
       </fieldset>
-    </form>
-    <form name="sign-up2">
+    </form> -->
+    <!----------------------------- ajax-post요청  ----------------------------->
+    <!-- <form name="sign-up2">
       <fieldset>
         <legend><h3>ajax post 요청</h3></legend>
         <input
@@ -78,6 +84,62 @@
           <button type="button" onclick="ajaxPost()">ajax post 전송</button>
         </div>
         <h3 id="result2"></h3>
+      </fieldset>
+    </form> -->
+    <!----------------------------- axios-get요청  ----------------------------->
+    <form name="sign-up3">
+      <fieldset>
+        <legend><h3>axios get 요청</h3></legend>
+        <input
+          type="text"
+          name="id"
+          placeholder="ID"
+          pattern="^[a-z0-9]{5,}$"
+          value="jordy123"
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          name="pw"
+          placeholder="비밀번호"
+          pattern="^[a-z0-9]{5,}$"
+          value="j1234"
+        />
+        <br />
+        <br />
+        <div>
+          <button type="button" onclick="axiosGet()">ajax get 전송</button>
+        </div>
+        <h3 id="result3"></h3>
+      </fieldset>
+    </form>
+    <!----------------------------- axios-post요청  ----------------------------->
+    <form name="sign-up4">
+      <fieldset>
+        <legend><h3>axios post 요청</h3></legend>
+        <input
+          type="text"
+          name="id"
+          placeholder="ID"
+          pattern="^[a-z0-9]{5,}$"
+          value="jordy123"
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          name="pw"
+          placeholder="비밀번호"
+          pattern="^[a-z0-9]{5,}$"
+          value="j1234"
+        />
+        <br />
+        <br />
+        <div>
+          <button type="button" onclick="axiosPost()">ajax post 전송</button>
+        </div>
+        <h3 id="result4"></h3>
       </fieldset>
     </form>
   </body>
@@ -116,8 +178,44 @@
         data: data,
         success: function (result2) {
           console.log(result2);
-          $('#result2').html(`${result2.id}님 환영하니니!`);
+          const { id } = result2;
+          $('#result2').html(`${id}님 환영하니니!`);
         },
+      });
+    }
+    // ----------------------------- axios-get요청 응답 코드 -----------------------------
+    function axiosGet() {
+      const form = document.forms['sign-up3'];
+      const data = {
+        id: form.id.value,
+        pw: form.pw.value,
+      };
+      axios({
+        method: 'GET',
+        url: '/axios/get',
+        params: data, // get 요청으로 데이터를 보낼 때 params를 사용한다.
+      }).then((res) => {
+        // 서버에서 보내준 응답이 res에 담긴다.
+        const { id } = res.data;
+        $('#result3').html(`${id}님 환영하니니!`);
+      });
+    }
+
+    // ----------------------------- axios-post요청 응답 코드 -----------------------------
+    function axiosPost() {
+      const form = document.forms['sign-up4'];
+      const data = {
+        id: form.id.value,
+        pw: form.pw.value,
+      };
+
+      axios({
+        method: 'POST',
+        url: '/axios/post',
+        data: data,
+      }).then((res) => {
+        const { id } = res.data;
+        $('#result4').html(`${id}님 환영하니니!`);
       });
     }
   </script>

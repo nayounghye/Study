@@ -23,6 +23,16 @@ app.post('/ajax/post', function (req, res) {
   res.send(req.body);
 });
 
+app.get('/axios/get', function (req, res) {
+  console.log(req.query);
+  res.send(req.query);
+});
+
+app.post('/axios/post', function (req, res) {
+  console.log(req.body);
+  res.send(req.body);
+});
+
 app.listen(PORT, function () {
   console.log(`Sever Open: ${PORT}`);
 });
