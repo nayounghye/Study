@@ -11,7 +11,6 @@ app.use(express.static('static'));
 // 아래코드 : static 디렉토리를 정적 디렉토리로 설정하여, 접근 가능하게 함. - 요건 이미지
 app.use('/static', express.static('static'));
 
-// 아래 코드들 분해하는거부터 금욜에 하자~~
 //라우터를 미들웨어로 걸어준다.
 const router = require('./routes/user');
 //localhost:8000/user/~~~ 는 아래 코드에서 검사한다.
