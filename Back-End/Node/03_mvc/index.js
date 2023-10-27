@@ -1,54 +1,31 @@
 const express = require('express');
-const router = require('../../../../sesac-ys2/node-backend/05-mvc-practice1/routes/user');
+const userController = require('./controller/Cuser');
 const app = express();
 const PORT = 8000;
 
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/static', express.static('public'));
+// 아래코드 : static 디렉토리를 정적 디렉토리로 설정하여, 접근 가능하게 함. - 요견 css
+app.use(express.static('static'));
+// 아래코드 : static 디렉토리를 정적 디렉토리로 설정하여, 접근 가능하게 함. - 요건 이미지
+app.use('/static', express.static('static'));
 
 // 아래 코드들 분해하는거부터 금욜에 하자~~
-conset router = require('./routes/user')
-app.user('/user', router);
-
-app.get('/', function (req, res) {
-  res.render('index');
-});
-
-app.post('/login', function (req, res) {
-  const id = 'jordy';
-  const pw = '12345';
-  let data;
-  if (req.body.userid == id && req.body.password == pw) {
-    data = {
-      isSuccess: true,
-      msg: '로그인 성공!',
-    };
-  } else {
-    data = {
-      isSuccess: false,
-      msg: '로그인 실패!',
-    };
-  }
-  // console.log(req.body);
-  res.send(data);
-});
+//라우터를 미들웨어로 걸어준다.
+const router = require('./routes/user');
+//localhost:8000/user/~~~ 는 아래 코드에서 검사한다.
+app.use('/user', router);
 
 // router, controller, model, view
 // 1. router 분리 (요청을 정의) -> routes파일에 정리
 // 2. controller 분리 (들어온 요청에 대해 데이터 처리, view를 render 등을 담당, client에 응답하는 역할을 함.)
 // 3. model 분리 (db에 접근하여 데이터를 select,insert,update,delete 등 을 한다.)
 
-// const router = require('./routes/user');
-// //라우터를 미들웨어로 걸어준다.
-// app.use('/user', router);
-//localhost:8000/user/~~~ 는 위 코드에서 검사한다.
-
 // user 테이블을 만들었다고 가정했을 때 -> 회원가입(insert), 로그인(select), 회원정보 수정(update), 탈퇴(delete) 등의 동작을 필요함.
 // CRUD 에 따라 회원가입 : C / 로그인 : R / 수정 : U / 탈퇴 : D
 
-// --------------------- 이 부분은 routes 에 들어가는 부분 ---------------
+// --------------------- 아래 부분은 routes 에 들어가는 부분 ---------------
 
 // app.get('/register', function (req, res) {
 //   console.log(req.query);
