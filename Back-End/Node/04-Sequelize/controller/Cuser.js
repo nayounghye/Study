@@ -1,6 +1,6 @@
 // controller 부분은 function 을 다 여기에 담는다.
 // User에는 userInfo 라는 함수가 존재 'User  = {userInfo: ()=>{}}
-const User = require('../model/User');
+const User = require('../model');
 
 // 1. router 분리 (요청을 정의) -> routes파일에 정리 - 완료
 // 2. controller 분리 (들어온 요청에 대해 데이터 처리, view를 render 등을 담당, client에 응답하는 역할을 함.)
@@ -14,10 +14,15 @@ exports.main = (req, res) => {
   res.render('index');
 };
 
+// exports.register = (req, res) => {
+//   User.getUsers((rows) => {
+//     res.render('register', { data: rows });
+//   });
+// };
+
 exports.register = (req, res) => {
-  User.getUsers((rows) => {
-    res.render('register', { data: rows });
-  });
+  res.render('register');
 };
 
+exports.
 // POST /visitor => 방명록 insert

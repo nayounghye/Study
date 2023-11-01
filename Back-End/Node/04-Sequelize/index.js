@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('static'));
 // // 아래코드 : static 디렉토리를 정적 디렉토리로 설정하여, 접근 가능하게 함. - 요건 이미지
 app.use('/static', express.static('static'));
-// 릴리리더님은 아래처럼 작성하심
+// 릴리 리더님은 아래처럼 작성하심
 // app.use('/static', express.static(_dirname + '/static'));
 
 //라우터를 미들웨어로 걸어준다.
@@ -20,12 +20,6 @@ app.use('/', router);
 app.get('*', function (req, res) {
   res.render('404');
 });
-
-app.listen(PORT, function () {
-  console.log(`Sever Open: ${PORT}`);
-});
-
-// 릴리 리더님 코드
 
 // index(내꺼는 로그인 메인 화면) 페이지 렌더 (get으로 해야함!)
 router.get('/', (req, res) => {
@@ -47,3 +41,11 @@ router.get('/signin', (req, res) => {
 // 로그인 -> user table에서 회원 존재 여부를 판단하는 api (로그인 버튼을 눌렀을 때 보낼 api 필요)
 
 // 회원정보 페이지 렌더
+
+app.get('*', function (req, res) {
+  res.render('404');
+});
+
+app.listen(PORT, function () {
+  console.log(`Sever Open: ${PORT}`);
+});
