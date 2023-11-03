@@ -1,17 +1,23 @@
-const express = require('express')
-const user = require('../controller/Cuser')
-const router = express.Router()
+const express = require('express');
+const controller = require('../controller/Cvisitor');
+const router = express.Router();
 
-router.get('/', user.index)
+// localhost:8000/ → index.ejs render
+router.get('/', controller.home);
 
-router.get('/signup', user.signup)
-router.post('/signup', user.post_signup)
+// localhost:8000/visitor → visitor.ejs render
+router.get('visitors', controller.visitor);
 
-router.get('/signin', user.signin)
-router.post('/signin', user.post_signin)
+// 방명록 등록
+router.post('/visitor', controller.postVisitor);
 
-router.post('/profile', user.profile)
-router.patch('/profile/edit/:id', user.profile_edit)
-router.delete('/profile/delete/:id', user.profile_delete)
+// 방명록 수정
+router.patch('/visitor');
 
-module.exports = router
+// 방명록 하나 조회
+router.get('/visitor');
+
+// 방명록 삭제
+router.delete('/visitor');
+
+module.exports = router;
